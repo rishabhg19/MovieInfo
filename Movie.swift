@@ -50,5 +50,5 @@ struct MovieDetail: Codable {
 }
 
 struct MovieDetailResponse: Codable {
-    let results: [MovieDetail]
+    let results: MovieDetail
 }
