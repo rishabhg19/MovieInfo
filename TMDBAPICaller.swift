@@ -65,29 +65,4 @@ class TMDBAPICaller {
             return nil
         }
     }
-    
-    func getGenreIds() async -> [String:Any] {
-        let url = URL(string: "https://api.themoviedb.org/3/genre/movie/list")!
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        let queryItems: [URLQueryItem] = [
-          URLQueryItem(name: "language", value: "en"),
-        ]
-        components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
-
-        var request = URLRequest(url: components.url!)
-        request.httpMethod = "GET"
-        request.timeoutInterval = 10
-        request.allHTTPHeaderFields = [
-          "accept": "application/json",
-          "Authorization": "Bearer \(token ?? "")"
-        ]
-        do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            print(String(decoding: data, as: UTF8.self))
-            return [:]
-        } catch (let error) {
-            print("API error: \(error.localizedDescription)")
-            return [:]
-        }
-    }
 }
