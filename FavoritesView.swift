@@ -38,6 +38,12 @@ struct FavoritesView: View {
                     }
                 }
             }
+            if !viewModel.favorites.isEmpty {
+                Text("Click X to remove from favorites")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 10)
+            }
         }
     }
 }

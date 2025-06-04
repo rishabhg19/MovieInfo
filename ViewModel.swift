@@ -19,11 +19,22 @@ class ViewModel: ObservableObject {
             }
         }
     }
-
+    
     func fetchMovies() async {
-        let downloadedMovies: [TrendingMovie]? = await TMDBAPICaller().getTrendingMovieList(timeWindow: self.timeWindow)
-        trendingMovies = downloadedMovies ?? []
-        //print(trendingMovies)
+        let cachedMovies = CacheManager.cache.readTrendingCache(timeWindow: self.timeWindow)
+        if !cachedMovies.isEmpty {
+            trendingMovies = cachedMovies
+            print("USING CACHE \n\n\n\n\n\n")
+            return
+        }
+        
+        if let downloadedMovies = await TMDBAPICaller().getTrendingMovieList(timeWindow: self.timeWindow) {
+            trendingMovies = downloadedMovies
+            CacheManager.cache.writeTrendingCache(downloadedMovies, timeWindow: self.timeWindow)
+        } else {
+            print("Error while retrieving trending movies from API")
+        }
+        
     }
     
     func toggleFavorite(_ movie: TrendingMovie) {
