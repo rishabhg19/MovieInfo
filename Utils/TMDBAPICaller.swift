@@ -10,6 +10,8 @@ import Foundation
 
 class TMDBAPICaller {
     let token = Bundle.main.infoDictionary?["TMDBReadToken"] as? String
+    //below is a fake read access token
+    //let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmNvbSIsImF1ZCI6IjEyMzQ1Njc4OTBhYmNkZWYiLCJzdWIiOiJhYmNkZWZnaGlqa2xtbm9wcXJzdHV2Iiwic2NvcGVzIjpbInJlYWQiLCJ3cml0ZSJdLCJpYXQiOjE2NDAwMDAwMDB9.XyZ1vK8mNxlPBoR7S5TR0jdXQqztAaWM0j_Hq8RlJhA"
     
     func getTrendingMovieList(timeWindow: String = "day") async -> [TrendingMovie]? {
         //print("token is \(token)")
