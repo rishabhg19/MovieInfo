@@ -11,7 +11,7 @@ import Foundation
 class TMDBAPICaller {
     let token = Bundle.main.infoDictionary?["TMDBReadToken"] as? String
     
-    func getTrendingMovieList(timeWindow: String = "day") async -> [Movie]? {
+    func getTrendingMovieList(timeWindow: String = "day") async -> [TrendingMovie]? {
         //print("token is \(token)")
         let url = URL(string: "https://api.themoviedb.org/3/trending/movie/\(timeWindow)")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
@@ -29,7 +29,7 @@ class TMDBAPICaller {
         ]
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            let decodedData = try JSONDecoder().decode(MovieResponse.self, from: data)
+            let decodedData = try JSONDecoder().decode(TrendingMovieResponse.self, from: data)
             return decodedData.results
         } catch(let error) {
             print("API error: \(error.localizedDescription)")
@@ -37,7 +37,7 @@ class TMDBAPICaller {
         }
     }
     
-    func getMovieDetails(id: Int) async -> Movie? {
+    func getMovieDetails(id: Int) async -> MovieDetail? {
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(id.description)")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!

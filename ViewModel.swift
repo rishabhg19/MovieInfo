@@ -10,8 +10,8 @@ import Foundation
 
 @MainActor
 class ViewModel: ObservableObject {
-    @Published var trendingMovies: [Movie] = []
-    @Published var favorites: [Movie] = []
+    @Published var trendingMovies: [TrendingMovie] = []
+    @Published var favorites: [TrendingMovie] = []
     var timeWindow: String = "day" {
         didSet {
             Task {
@@ -21,12 +21,12 @@ class ViewModel: ObservableObject {
     }
 
     func fetchMovies() async {
-        let downloadedMovies: [Movie]? = await TMDBAPICaller().getTrendingMovieList(timeWindow: self.timeWindow)
+        let downloadedMovies: [TrendingMovie]? = await TMDBAPICaller().getTrendingMovieList(timeWindow: self.timeWindow)
         trendingMovies = downloadedMovies ?? []
         //print(trendingMovies)
     }
     
-    func toggleFavorite(_ movie: Movie) {
+    func toggleFavorite(_ movie: TrendingMovie) {
         if let index = favorites.firstIndex(where: { $0.id == movie.id }) {
             favorites.remove(at: index)
         } else {
@@ -34,11 +34,11 @@ class ViewModel: ObservableObject {
         }
     }
     
-    func isFavorite(_ movie: Movie) -> Bool {
+    func isFavorite(_ movie: TrendingMovie) -> Bool {
         favorites.contains(where: { $0.id == movie.id })
     }
 
-    func removeFavorite(_ movie: Movie) {
+    func removeFavorite(_ movie: TrendingMovie) {
         favorites.removeAll { $0.id == movie.id }
     }
 }

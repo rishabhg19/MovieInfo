@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MovieDetailView: View {
     @EnvironmentObject var viewModel: ViewModel
-    let movie: Movie
+    let movie: TrendingMovie
 
     var body: some View {
         ScrollView {
