@@ -48,7 +48,3 @@ struct MovieDetail: Codable {
         case originCountry = "origin_country"
     }
 }
-
-struct MovieDetailResponse: Codable {
-    let results: MovieDetail
-}

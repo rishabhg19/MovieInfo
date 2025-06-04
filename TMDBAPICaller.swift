@@ -58,8 +58,8 @@ class TMDBAPICaller {
         
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            let decodedData = try JSONDecoder().decode(MovieDetailResponse.self, from: data)
-            return decodedData.results
+            let decodedData = try JSONDecoder().decode(MovieDetail.self, from: data)
+            return decodedData
         } catch(let error) {
             print("API error: \(error.localizedDescription)")
             return nil
