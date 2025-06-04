@@ -42,10 +42,6 @@ struct MovieDetailView: View {
                     .font(.title)
                     .fontWeight(.bold)
 
-                Text("\(movie.releaseDate)")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-
                 Text("Overview")
                     .font(.headline)
                     .padding(.top, 10)
@@ -59,6 +55,10 @@ struct MovieDetailView: View {
                         .foregroundColor(.gray)
                         .padding(.top, 10)
                 }
+                
+                Text("\(movie.releaseDate)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
             .padding()
         }
