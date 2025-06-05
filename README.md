@@ -1,5 +1,7 @@
 # TMDB Movie Info Application
 ## Quick Setup
+[Video demo](https://www.youtube.com/watch?v=oSUZHx0P_40)
+
 1. To quickly run this application, run `git clone https://github.com/rishabhg19/MovieInfo.git`. The directory structure should look like below.
  ```
 MovieInfo/
